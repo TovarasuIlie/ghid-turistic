@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 400px;">
+            <div class="card-header">
+                Adauga Piesa
+            </div>
+            <div class="card-body p-4">
+                <form [formGroup]="addForm" (ngSubmit)="addPart()">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Denumire Piesa</label>
+                        <input formControlName="partName" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Pret</label>
+                        <input formControlName="price" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Bucati</label>
+                        <input formControlName="stock" type="text" class="form-control">
+                    </div>
+                    <div *ngIf="errorMessages.length" class="alert alert-danger">
+                        <ul>
+                            <li *ngFor="let error of errorMessages">{{ error }}</li>
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adauga</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 600px;">
+            <div class="card-header">
+                Table Piese
+            </div>
+            <div class="card-body p-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Denumire</th>
+                            <th>Pret</th>
+                            <th>Stock</th>
+                            <th>Actiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let part of parts; let i = index">
+                            <td>{{ i }}</td>
+                            <td>{{ part.partName }}</td>
+                            <td>{{ part.price }}</td>
+                            <td>{{ part.stock }}</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning">Editeaza</button>
+                                <button class="btn btn-sm btn-danger" (click)="deletePart(i)">Sterge</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
